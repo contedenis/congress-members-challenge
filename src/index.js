@@ -2,9 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 // @app
-import App from './components/App';
+import Routes from './components/Routes';
 import configureStore from './store/configureStore';
 
 // @own
@@ -17,7 +18,9 @@ const MOUNT_NODE = document.getElementById('root');
 ReactDOM.render(
   (
     <Provider store={store}>
-      <App />
+      <Router>
+        <Routes />
+      </Router>
     </Provider>
   ),
   MOUNT_NODE,
