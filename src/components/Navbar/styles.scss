@@ -2,7 +2,7 @@
   background: #2fa4e7;
   display: flex;
   flex-direction: row;
-  height: 50px;
+  height: 80px;
   justify-content: space-between;
   position: fixed;
   text-overflow: ellipsis;
@@ -19,33 +19,8 @@
   }
 
   &__navigation {
-    display: flex;
-    padding-right: 20px;
-  }
-
-  &__navigation-menu {
     align-items: center;
     display: flex;
-    line-height: 30px;
-    margin: 0;
-    padding: 0;
-  }
-
-  &__navigation-item {
-    cursor: pointer;
-    display: inline-block;
-    font-size: 16px;
-    margin: 0 0 0 25px;
-
-    &-link {
-      color: gray;
-      font-family: sans-serif;
-      text-decoration: none;
-
-      &:hover,
-      &--active {
-        color: white;
-      }
-    }
+    padding-right: 20px;
   }
 }
