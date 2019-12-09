@@ -2,18 +2,20 @@
   align-items: center;
   background: white;
   border-radius: 50%;
-  border: 1px solid #2fa4e7;
   display: flex;
-  height: 60px;
   justify-content: center;
   position: relative;
-  width: 60px;
-
+  
   &__button {
     background: none;
+    border-radius: 50%;
     border: none;
+    border: 1px solid #2fa4e7;
     cursor: pointer;
+    height: 60px;
     outline: none;
+    width: 60px;
+    z-index: 1;
   }
 
   &__button-icon {
@@ -38,7 +40,6 @@
     right: 0;
     transition: opacity 1s, width 1s ease-in-out;
     width: 0;
-    z-index: -1;
 
     &--active {
       opacity: 1;
