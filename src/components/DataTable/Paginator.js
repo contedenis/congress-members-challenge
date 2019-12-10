@@ -3,6 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+// @own
+import './styles.scss';
+
 const Paginator = ({
   onPageChange,
   pageNumber,
@@ -40,19 +43,19 @@ const Paginator = ({
     return (
       <div className="data-table__foot">
         <button
-          className={cn('datatable__button-page', { 'datatable__button-page--disabled': isFirst })}
+          className={cn('data-table__button-page', { 'data-table__button-page--disabled': isFirst })}
           onClick={isFirst ? undefined : () => onPageChange(pageNumber - 2)}
           type="button"
         >
-          -
+          <i className="fa fa-chevron-left" />
         </button>
         {pages.map((p) => page(p))}
         <button
-          className={cn('datatable__button-page', { 'datatable__button-page--disabled': isLast })}
+          className={cn('data-table__button-page', { 'data-table__button-page--disabled': isLast })}
           onClick={isLast ? undefined : () => onPageChange(pageNumber)}
           type="button"
         >
-          +
+          <i className="fa fa-chevron-right" />
         </button>
       </div>
     );

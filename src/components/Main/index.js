@@ -23,7 +23,7 @@ function Main() {
   ];
 
   const congressPersons = {
-    items: paginator(members, 3),
+    items: paginator(members, 7),
     totalItems: members.length,
   };
 
@@ -37,7 +37,7 @@ function Main() {
         items={items[page]}
         onPageChange={setPage}
         page={page}
-        pageSize={3}
+        pageSize={7}
         totalItems={totalItems}
       />
     </div>

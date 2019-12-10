@@ -34,10 +34,14 @@
   }
   
   &__button-page {
+    background: none;
+    border: none;
     cursor: pointer;
+    font-size: 14px;
+    outline: none;
     padding: 5px;
 
-    &--selected {
+    &--selected, &:hover {
       color: black;
       font-weight: bold;
     }
