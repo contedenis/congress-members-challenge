@@ -1,0 +1,2 @@
+export const SEARCH_TERM = 'SEARCH_TERM';
+export const CLEAN_SEARCH_TERM = 'CLEAN_SEARCH_TERM';
