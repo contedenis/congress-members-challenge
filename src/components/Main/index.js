@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 // @app
 import DataTable from '../DataTable';
+import Toogle from '../Toogle';
 import { paginator, filterObject } from '../../utils/functions';
 import { selectSearchTerm } from '../InputSearch/selectors';
 
@@ -45,6 +46,7 @@ function Main({ searchTerm }) {
   return (
     <div className="main">
       {id ? `Main with params ${id}` : 'Main'}
+      <Toogle />
       <div className="main__data-table">
         <DataTable
           headItems={headItems}
