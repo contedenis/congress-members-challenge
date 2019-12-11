@@ -1,0 +1,54 @@
+  .advanced-search {
+    position: relative;
+    transition: border .5 ease-in-out;
+
+    &--active {
+      border-radius: 15px;
+      border: 1px solid #2fa4e7;
+    }
+
+    &__checkbox-list {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+
+      &--appear {
+        animation: appear .2s ease-in-out;
+        opacity: 1;
+        position: relative;
+
+        @keyframes appear {
+          0%  {
+            opacity: 0;
+            transform: translateY(-50%);
+          }
+          50% {
+            opacity: 0;
+          }
+          100%  {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+
+      &--disappear {
+        animation: disappear .2s ease-in-out;
+
+        @keyframes disappear {
+          0%  {
+            opacity: 1;
+            transform: translateY(+50%);
+            width: 100%;
+          }
+          50% {
+            opacity: 0;
+          }
+          100%  {
+            opacity: 0;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }

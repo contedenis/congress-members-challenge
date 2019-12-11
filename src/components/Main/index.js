@@ -5,9 +5,8 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 // @app
+import AdvancedSearch from '../AdvancedSearch';
 import DataTable from '../DataTable';
-import CheckboxList from '../CheckboxList';
-import Toogle from '../Toogle';
 import { paginator, filterObject } from '../../utils/functions';
 import { selectSearchTerm } from '../InputSearch/selectors';
 
@@ -47,17 +46,18 @@ function Main({ searchTerm }) {
   return (
     <div className="main">
       {id ? `Main with params ${id}` : 'Main'}
-      <Toogle />
-      <CheckboxList items={headItems} />
-      <div className="main__data-table">
-        <DataTable
-          headItems={headItems}
-          items={items[page] || []}
-          onPageChange={setPage}
-          page={page}
-          pageSize={7}
-          totalItems={totalItems}
-        />
+      <div className="main__content">
+        <AdvancedSearch items={headItems} />
+        <div className="main__data-table">
+          <DataTable
+            headItems={headItems}
+            items={items[page] || []}
+            onPageChange={setPage}
+            page={page}
+            pageSize={7}
+            totalItems={totalItems}
+          />
+        </div>
       </div>
     </div>
   );

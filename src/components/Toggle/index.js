@@ -1,14 +1,20 @@
 // @packages
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 // @own
 import './styles.scss';
 
-function Toogle() {
+function Toggle({ onActive, onClose }) {
   const [isChecked, setIsChecked] = useState(false);
 
   function handleChange() {
     setIsChecked(!isChecked);
+    onActive();
+
+    if (isChecked) {
+      onClose();
+    }
   }
 
   return (
@@ -31,4 +37,9 @@ function Toogle() {
   );
 }
 
-export default Toogle;
+Toggle.propTypes = {
+  onActive: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+
+export default Toggle;

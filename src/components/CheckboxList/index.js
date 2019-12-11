@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // @own
 import './styles.scss';
 
-function CheckboxList({ items }) {
+function CheckboxList({ items, onChange }) {
   const [itemsSelected, setItemsSelected] = useState([]);
 
   function onSelected(value) {
@@ -13,6 +13,7 @@ function CheckboxList({ items }) {
       ? itemsSelected.filter((item) => item !== value)
       : itemsSelected.concat(value);
 
+    onChange(newItemsSelected);
     setItemsSelected(newItemsSelected);
   }
 
@@ -39,6 +40,7 @@ CheckboxList.defaultProps = {
 
 CheckboxList.propTypes = {
   items: PropTypes.array,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default CheckboxList;
