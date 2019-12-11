@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 // @app
 import DataTable from '../DataTable';
-import { paginator } from '../../utils/functions';
+import { paginator, filterObject } from '../../utils/functions';
 import { selectSearchTerm } from '../InputSearch/selectors';
 
 // @own
@@ -16,16 +16,18 @@ import './styles.scss';
 function Main({ searchTerm }) {
   const [page, setPage] = useState(0);
 
-  const congressPersons = {
-    items: paginator(members, 7),
-    totalItems: members.length,
-  };
-
   function filterTable() {
+    const items = filterObject(members, searchTerm);
+    return {
+      items: paginator(items, 7),
+      totalItems: items.length,
+    };
   }
 
   useEffect(() => {
-    filterTable();
+    if (searchTerm.length > 3) {
+      filterTable();
+    }
   }, [searchTerm]);
 
   const { id } = useParams();
@@ -38,19 +40,21 @@ function Main({ searchTerm }) {
     'Party',
   ];
 
-  const { items, totalItems } = congressPersons;
+  const { items, totalItems } = filterTable();
 
   return (
     <div className="main">
       {id ? `Main with params ${id}` : 'Main'}
-      <DataTable
-        headItems={headItems}
-        items={items[page]}
-        onPageChange={setPage}
-        page={page}
-        pageSize={7}
-        totalItems={totalItems}
-      />
+      <div className="main__data-table">
+        <DataTable
+          headItems={headItems}
+          items={items[page] || []}
+          onPageChange={setPage}
+          page={page}
+          pageSize={7}
+          totalItems={totalItems}
+        />
+      </div>
     </div>
   );
 }

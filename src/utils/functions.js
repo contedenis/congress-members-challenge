@@ -9,6 +9,14 @@ function paginator(arr, size = 1, cache = []) {
   return cache;
 }
 
+function filterObject(object, value) {
+  return object.filter(
+    (objectItem) => Object.values(objectItem)
+      .find((item) => String(item).toLowerCase().startsWith(value.toLowerCase())),
+  );
+}
+
 export {
   paginator,
+  filterObject,
 };

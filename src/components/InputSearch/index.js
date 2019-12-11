@@ -11,10 +11,10 @@ import searchIcon from '../../assets/icons/search.svg';
 // @own
 import './styles.scss';
 import * as actions from './actions';
-import { selectSearchTerm } from './selectors';
 
-function InputSearch({ cleanSearchTerm, setSearchTerm, searchTerm }) {
+function InputSearch({ cleanSearchTerm, setSearchTerm }) {
   const [active, setActive] = useState(false);
+  const [value, setValue] = useState('');
 
   function delayActive() {
     setTimeout(() => {
@@ -38,8 +38,9 @@ function InputSearch({ cleanSearchTerm, setSearchTerm, searchTerm }) {
 
   function handleInputChange(e) {
     const { value } = e.target;
-    const validInput = value.trim();
+    const validInput = value.replace(/\s+/g, ' ').trim();
 
+    setValue(value);
     setSearchTerm(validInput);
   }
 
@@ -57,24 +58,15 @@ function InputSearch({ cleanSearchTerm, setSearchTerm, searchTerm }) {
         onChange={handleInputChange}
         placeholder="Search..."
         type="text"
-        value={searchTerm}
+        value={value}
       />
     </div>
   );
 }
 
-InputSearch.defaultProps = {
-  searchTerm: '',
-};
-
 InputSearch.propTypes = {
   cleanSearchTerm: PropTypes.func.isRequired,
   setSearchTerm: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-  searchTerm: selectSearchTerm(state),
-});
-
-export default connect(mapStateToProps, actions)(InputSearch);
+export default connect(null, actions)(InputSearch);
