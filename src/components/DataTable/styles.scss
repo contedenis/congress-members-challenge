@@ -1,12 +1,13 @@
 .data-table {
   background: #f7f7f7;
+  border-radius: 5px;
   width: 100%;
 
   &__head {
     border-bottom: 1px solid #ddd;
     color: #2eacdf;
     font-size: 1.2rem;
-    padding: 10px 10px;
+    padding: 20px 10px;
     text-align: left;
     text-transform: uppercase;
   }
@@ -14,7 +15,7 @@
   &__row {
     &-text {
       font-family: 'Roboto', sans-serif;
-      padding: 12px 10px;
+      padding: 20px 10px;
       text-align: left;
     }
 
@@ -37,7 +38,7 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     padding: 5px;
 
