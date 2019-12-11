@@ -1,0 +1,16 @@
+.checkbox-list {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 20px;
+
+  &__text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+  }
+
+  &__check {
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}
