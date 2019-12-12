@@ -20,8 +20,8 @@ function DataTable({
       <table className="data-table">
         <thead>
           <tr>
-            {headItems.map((item, key) => (
-              <th className="data-table__head" key={key}>{item}</th>
+            {headItems.map((item) => (
+              <th className="data-table__head" key={item.key}>{item.title}</th>
             ))}
           </tr>
         </thead>
@@ -29,7 +29,7 @@ function DataTable({
           {items.map((item, index) => (
             <tr className={cn('data-table__row', { 'data-table__row--active': index % 2 })} key={index}>
               <td className="data-table__row-text">{item.title}</td>
-              <td className="data-table__row-text">{`${item.first_name} ${item.last_name}`}</td>
+              <td className="data-table__row-text">{`${item.last_name}, ${item.first_name}`}</td>
               <td className="data-table__row-text">{item.date_of_birth}</td>
               <td className="data-table__row-text">{item.gender}</td>
               <td className="data-table__row-text">{item.party}</td>

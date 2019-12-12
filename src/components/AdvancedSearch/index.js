@@ -30,7 +30,11 @@ function AdvancedSearch({
         { 'advanced-search__checkbox-list--appear': active },
         { 'advanced-search__checkbox-list--disappear': !active })}
       >
-        <CheckboxList onChange={setAdvancedSearch} items={items} />
+        <CheckboxList
+          active={active}
+          items={items}
+          onChange={setAdvancedSearch}
+        />
       </div>
     </div>
   );

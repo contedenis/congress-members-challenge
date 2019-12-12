@@ -8,17 +8,18 @@ import { useParams } from 'react-router-dom';
 import AdvancedSearch from '../AdvancedSearch';
 import DataTable from '../DataTable';
 import { paginator, filterObject } from '../../utils/functions';
+import { selectAdvancedSearch } from '../AdvancedSearch/selectors';
 import { selectSearchTerm } from '../InputSearch/selectors';
 
 // @own
 import { members } from './mockData';
 import './styles.scss';
 
-function Main({ searchTerm }) {
+function Main({ advancedSearch, searchTerm }) {
   const [page, setPage] = useState(0);
 
   function filterTable() {
-    const items = filterObject(members, searchTerm);
+    const items = filterObject(members, searchTerm, advancedSearch);
     return {
       items: paginator(items, 7),
       totalItems: items.length,
@@ -34,11 +35,26 @@ function Main({ searchTerm }) {
   const { id } = useParams();
 
   const headItems = [
-    'Title',
-    'Name',
-    'Birth',
-    'Gender',
-    'Party',
+    {
+      title: 'Title',
+      key: 'title',
+    },
+    {
+      title: 'Name',
+      key: 'name',
+    },
+    {
+      title: 'Birth',
+      key: 'date_of_birth',
+    },
+    {
+      title: 'Gender',
+      key: 'gender',
+    },
+    {
+      title: 'Party',
+      key: 'party',
+    },
   ];
 
   const { items, totalItems } = filterTable();
@@ -64,14 +80,17 @@ function Main({ searchTerm }) {
 }
 
 Main.defaultProps = {
+  advancedSearch: [],
   searchTerm: '',
 };
 
 Main.propTypes = {
+  advancedSearch: PropTypes.array,
   searchTerm: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
+  advancedSearch: selectAdvancedSearch(state),
   searchTerm: selectSearchTerm(state),
 });
 

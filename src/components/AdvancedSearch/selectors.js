@@ -1,1 +1,1 @@
-export const selectSearchTerm = ({ advancedSearch }) => advancedSearch.values;
+export const selectAdvancedSearch = ({ advancedSearch }) => advancedSearch.values;
