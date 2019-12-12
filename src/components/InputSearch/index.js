@@ -29,8 +29,9 @@ function InputSearch({ cleanSearchTerm, setSearchTerm }) {
 
   function handleOpen() {
     if (active) {
-      setActive(false);
       cleanSearchTerm();
+      setActive(false);
+      setValue('');
     } else {
       setActive(true);
     }
