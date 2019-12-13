@@ -7,18 +7,18 @@ import './styles.scss';
 
 function Chip({ principal, secondary, type }) {
   return (
-    <p className="chip">
+    <div className="chip">
       <h4 className="chip__principal">
         <b>{`${principal}: `}</b>
         {type === 'list' ? (
           <ul>
-            {secondary.map((item) => (
-              <li>{item}</li>
+            {secondary.map((item, key) => (
+              <li key={key}>{item}</li>
             ))}
           </ul>
         ) : secondary}
       </h4>
-    </p>
+    </div>
   );
 }
 
@@ -28,7 +28,11 @@ Chip.defaultProps = {
 
 Chip.propTypes = {
   principal: PropTypes.string.isRequired,
-  secondary: PropTypes.string.isRequired,
+  secondary: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array,
+  ]).isRequired,
   type: PropTypes.string,
 };
 

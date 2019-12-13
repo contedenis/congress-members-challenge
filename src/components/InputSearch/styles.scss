@@ -46,4 +46,10 @@
       width: 200px;
     }
   }
+
+  @media only screen and (max-width: 768px) {
+    &__input--active {
+      width: 100px;
+    }
+  }
 }

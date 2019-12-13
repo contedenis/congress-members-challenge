@@ -69,6 +69,7 @@
       &--item {
         display: flex;
         justify-content: space-between;
+        overflow: hidden;
       }
     }
   }
@@ -124,6 +125,19 @@
         &--item {
           font-size: 10px;
         }
+      }
+    } 
+  }
+
+  @media only screen and (max-width: 768px) {
+    &__header {
+      &-content {
+        flex-direction: column;
+      }
+
+      &-social {
+        width: 100%;
+        margin-top: 10px;
       }
     } 
   }

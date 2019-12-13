@@ -54,7 +54,8 @@ function DetailsModal({
             <>
               <button type="button" className="modal-details__breadcrumbs" onClick={onClose}>
                 <i className="fa fa-chevron-left" />
-                {` Back`}
+                {' '}
+                Back
               </button>
               <div className="modal-details__header">
                 <div className="modal-details__header-content">
@@ -78,8 +79,8 @@ function DetailsModal({
               </div>
               <div className="modal-details__content">
                 <div className="modal-details__content-roles">
-                  {roles && roles.map((role) => (
-                    <div className="modal-details__roles">
+                  {roles && roles.map((role, key) => (
+                    <div className="modal-details__roles" key={key}>
                       <Chip principal="congress" secondary={role.congress} />
                       <Chip principal="chamber" secondary={role.chamber} />
                       <Chip principal="party" secondary={role.party} />

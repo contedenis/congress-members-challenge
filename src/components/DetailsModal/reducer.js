@@ -5,7 +5,7 @@ import {
 } from './actionTypes';
 
 const defaultState = {
-  details: [],
+  details: {},
   errorMessage: null,
   fetching: false,
 };
