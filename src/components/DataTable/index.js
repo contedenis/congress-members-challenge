@@ -3,6 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+// @app
+import EmptyState from '../EmptyState';
+
 // @own
 import './styles.scss';
 import Paginator from './Paginator';
@@ -26,15 +29,23 @@ function DataTable({
           </tr>
         </thead>
         <tbody>
-          {items.map((item, index) => (
-            <tr className={cn('data-table__row', { 'data-table__row--active': index % 2 })} key={index}>
-              <td className="data-table__row-text">{item.title}</td>
-              <td className="data-table__row-text">{`${item.last_name}, ${item.first_name}`}</td>
-              <td className="data-table__row-text">{item.date_of_birth}</td>
-              <td className="data-table__row-text">{item.gender}</td>
-              <td className="data-table__row-text">{item.party}</td>
+          {items.length > 0 ? (
+            items.map((item, index) => (
+              <tr className={cn('data-table__row', { 'data-table__row--active': index % 2 })} key={index}>
+                <td className="data-table__row-text">{item.title}</td>
+                <td className="data-table__row-text">{`${item.last_name}, ${item.first_name}`}</td>
+                <td className="data-table__row-text">{item.date_of_birth}</td>
+                <td className="data-table__row-text">{item.gender}</td>
+                <td className="data-table__row-text">{item.party}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={12}>
+                <EmptyState text="Oops, it seems that we have not found congress." />
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
       <Paginator

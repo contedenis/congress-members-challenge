@@ -1,0 +1,20 @@
+.empty-state {
+  align-items: center;
+  animation: appear 1s ease;
+  color: black;
+  display: flex;
+  height: 420px;
+  justify-content: center;
+  text-align: center;
+
+  @keyframes appear {
+    0%  {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100%  {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
