@@ -5,32 +5,41 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 // @app
-import AdvancedSearch from '../AdvancedSearch';
-import DataTable from '../DataTable';
 import { paginator, filterObject } from '../../utils/functions';
 import { selectAdvancedSearch } from '../AdvancedSearch/selectors';
 import { selectSearchTerm } from '../InputSearch/selectors';
+import AdvancedSearch from '../AdvancedSearch';
+import DataTable from '../DataTable';
 
 // @own
-import { members } from './mockData';
 import './styles.scss';
+import { selectCongress } from './selectors';
+import * as actions from './actions';
 
-function Main({ advancedSearch, searchTerm }) {
+function Main({
+  advancedSearch,
+  congress,
+  getCongress,
+  searchTerm,
+}) {
   const [page, setPage] = useState(0);
 
   function filterTable() {
-    const items = filterObject(members, searchTerm, advancedSearch);
+    const items = filterObject(congress, searchTerm, advancedSearch);
+
     return {
       items: paginator(items, 7),
       totalItems: items.length,
+      pageSelected: (items.length < 2) ? 0 : page,
     };
   }
 
   useEffect(() => {
-    if (searchTerm.length > 3) {
-      filterTable();
-    }
-  }, [searchTerm]);
+    getCongress({
+      congress: 116,
+      chamber: 'senate',
+    });
+  }, []);
 
   const { id } = useParams();
 
@@ -57,7 +66,7 @@ function Main({ advancedSearch, searchTerm }) {
     },
   ];
 
-  const { items, totalItems } = filterTable();
+  const { items, totalItems, pageSelected } = filterTable();
 
   return (
     <div className="main">
@@ -67,9 +76,9 @@ function Main({ advancedSearch, searchTerm }) {
         <div className="main__data-table">
           <DataTable
             headItems={headItems}
-            items={items[page] || []}
+            items={items[pageSelected] || []}
             onPageChange={setPage}
-            page={page}
+            page={pageSelected}
             pageSize={7}
             totalItems={totalItems}
           />
@@ -81,17 +90,21 @@ function Main({ advancedSearch, searchTerm }) {
 
 Main.defaultProps = {
   advancedSearch: [],
+  congress: [],
   searchTerm: '',
 };
 
 Main.propTypes = {
   advancedSearch: PropTypes.array,
+  congress: PropTypes.array,
+  getCongress: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   advancedSearch: selectAdvancedSearch(state),
+  congress: selectCongress(state),
   searchTerm: selectSearchTerm(state),
 });
 
-export default connect(mapStateToProps, null)(Main);
+export default connect(mapStateToProps, actions)(Main);
