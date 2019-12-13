@@ -10,6 +10,7 @@ import { selectAdvancedSearch } from '../AdvancedSearch/selectors';
 import { selectSearchTerm } from '../InputSearch/selectors';
 import AdvancedSearch from '../AdvancedSearch';
 import DataTable from '../DataTable';
+import Modal from '../Modal';
 
 // @own
 import './styles.scss';
@@ -23,6 +24,7 @@ function Main({
   searchTerm,
 }) {
   const [page, setPage] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   function filterTable() {
     const items = filterObject(congress, searchTerm, advancedSearch);
@@ -84,6 +86,18 @@ function Main({
           />
         </div>
       </div>
+      <button type="button" onClick={() => setShowModal(true)}>
+        Show modal
+      </button>
+      {showModal ? (
+        <Modal>
+          <div className="main__modal">
+            <button type="button" onClick={() => setShowModal(false)}>
+              Hide modal
+            </button>
+          </div>
+        </Modal>
+      ) :  null}
     </div>
   );
 }
