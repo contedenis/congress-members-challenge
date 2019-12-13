@@ -5,6 +5,7 @@ import cn from 'classnames';
 
 // @app
 import EmptyState from '../EmptyState';
+import Loading from '../Loading';
 
 // @own
 import './styles.scss';
@@ -13,6 +14,7 @@ import Paginator from './Paginator';
 function DataTable({
   headItems,
   items,
+  loading,
   onPageChange,
   page,
   pageSize,
@@ -29,7 +31,7 @@ function DataTable({
           </tr>
         </thead>
         <tbody>
-          {items.length > 0 ? (
+          {items.length > 0 && !loading ? (
             items.map((item, index) => (
               <tr className={cn('data-table__row', { 'data-table__row--active': index % 2 })} key={index}>
                 <td className="data-table__row-text">{item.title}</td>
@@ -42,7 +44,9 @@ function DataTable({
           ) : (
             <tr>
               <td colSpan={12}>
-                <EmptyState text="Oops, it seems that we have not found congress." />
+                {loading
+                  ? <Loading loadingClassName="data-table__loading" />
+                  : <EmptyState text="Oops, it seems that we have not found congress." />}
               </td>
             </tr>
           )}
@@ -58,9 +62,14 @@ function DataTable({
   );
 }
 
+DataTable.defaultProps = {
+  loading: false,
+};
+
 DataTable.propTypes = {
   headItems: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
+  loading: PropTypes.bool,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,

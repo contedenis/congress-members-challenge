@@ -14,12 +14,13 @@ import Modal from '../Modal';
 
 // @own
 import './styles.scss';
-import { selectCongress } from './selectors';
+import { selectCongress, selectFetching } from './selectors';
 import * as actions from './actions';
 
 function Main({
   advancedSearch,
   congress,
+  fetching,
   getCongress,
   searchTerm,
 }) {
@@ -79,6 +80,7 @@ function Main({
           <DataTable
             headItems={headItems}
             items={items[pageSelected] || []}
+            loading={fetching}
             onPageChange={setPage}
             page={pageSelected}
             pageSize={7}
@@ -97,7 +99,7 @@ function Main({
             </button>
           </div>
         </Modal>
-      ) :  null}
+      ) : null}
     </div>
   );
 }
@@ -105,12 +107,14 @@ function Main({
 Main.defaultProps = {
   advancedSearch: [],
   congress: [],
+  fetching: false,
   searchTerm: '',
 };
 
 Main.propTypes = {
   advancedSearch: PropTypes.array,
   congress: PropTypes.array,
+  fetching: PropTypes.bool,
   getCongress: PropTypes.func.isRequired,
   searchTerm: PropTypes.string,
 };
@@ -118,6 +122,7 @@ Main.propTypes = {
 const mapStateToProps = (state) => ({
   advancedSearch: selectAdvancedSearch(state),
   congress: selectCongress(state),
+  fetching: selectFetching(state),
   searchTerm: selectSearchTerm(state),
 });
 

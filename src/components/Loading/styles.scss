@@ -1,0 +1,22 @@
+.loading {
+  padding: 16px 0;
+  text-align: center;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    border: 4px #2fa4e7 solid;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: rotateRight .6s infinite linear;
+    vertical-align: middle;
+    clear: both;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@keyframes rotateRight {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
