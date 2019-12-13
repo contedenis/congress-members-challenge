@@ -15,6 +15,7 @@ function DataTable({
   headItems,
   items,
   loading,
+  onOpen,
   onPageChange,
   page,
   pageSize,
@@ -33,7 +34,11 @@ function DataTable({
         <tbody>
           {items.length > 0 && !loading ? (
             items.map((item, index) => (
-              <tr className={cn('data-table__row', { 'data-table__row--active': index % 2 })} key={index}>
+              <tr
+                className={cn('data-table__row', { 'data-table__row--active': index % 2 })}
+                key={index}
+                onClick={() => onOpen(item.id)}
+              >
                 <td className="data-table__row-text">{item.title}</td>
                 <td className="data-table__row-text">{`${item.last_name}, ${item.first_name}`}</td>
                 <td className="data-table__row-text">{item.date_of_birth}</td>
@@ -70,6 +75,7 @@ DataTable.propTypes = {
   headItems: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
   loading: PropTypes.bool,
+  onOpen: PropTypes.func.isRequired,
   onPageChange: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
   pageSize: PropTypes.number.isRequired,

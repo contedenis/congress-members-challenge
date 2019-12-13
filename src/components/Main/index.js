@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 // @app
+import AdvancedSearch from '../AdvancedSearch';
+import DataTable from '../DataTable';
+import DetailsModal from '../DetailsModal';
 import { paginator, filterObject } from '../../utils/functions';
 import { selectAdvancedSearch } from '../AdvancedSearch/selectors';
 import { selectSearchTerm } from '../InputSearch/selectors';
-import AdvancedSearch from '../AdvancedSearch';
-import DataTable from '../DataTable';
-import Modal from '../Modal';
 
 // @own
 import './styles.scss';
@@ -25,7 +25,7 @@ function Main({
   searchTerm,
 }) {
   const [page, setPage] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
 
   function filterTable() {
     const items = filterObject(congress, searchTerm, advancedSearch);
@@ -35,6 +35,14 @@ function Main({
       totalItems: items.length,
       pageSelected: (items.length < 2) ? 0 : page,
     };
+  }
+
+  function onOpen(id) {
+    history.push(`${id}`);
+  }
+
+  function onClose() {
+    history.push('/');
   }
 
   useEffect(() => {
@@ -73,7 +81,6 @@ function Main({
 
   return (
     <div className="main">
-      {id ? `Main with params ${id}` : 'Main'}
       <div className="main__content">
         <AdvancedSearch items={headItems} />
         <div className="main__data-table">
@@ -81,6 +88,7 @@ function Main({
             headItems={headItems}
             items={items[pageSelected] || []}
             loading={fetching}
+            onOpen={onOpen}
             onPageChange={setPage}
             page={pageSelected}
             pageSize={7}
@@ -88,17 +96,8 @@ function Main({
           />
         </div>
       </div>
-      <button type="button" onClick={() => setShowModal(true)}>
-        Show modal
-      </button>
-      {showModal ? (
-        <Modal>
-          <div className="main__modal">
-            <button type="button" onClick={() => setShowModal(false)}>
-              Hide modal
-            </button>
-          </div>
-        </Modal>
+      {id ? (
+        <DetailsModal onClose={onClose} id={id} />
       ) : null}
     </div>
   );

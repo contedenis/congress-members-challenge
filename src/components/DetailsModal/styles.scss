@@ -1,0 +1,130 @@
+.modal-details {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  &__breadcrumbs {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    margin: 5px;
+    outline: inherit;
+    text-decoration: none;
+  }
+
+  &__container {
+    background: white;
+    border-top: 10px solid #2fa4e7;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    max-height: 70%;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    width: 50%;
+
+    &--loading {
+      height: 70%;
+    }
+  }
+
+  &__header {
+    background: #2fa4e7;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 20px 60px 20px 40px;
+    
+    &-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &-data {
+      display: flex;
+      flex-direction: column;
+
+      &--text {
+        font-size: 35px;
+        margin-top: 10px;
+      }
+    }
+
+    &-social {
+      border-radius: 5px;
+      border: 1px solid white;
+      display: flex;
+      flex-direction: column;
+      min-width: 30%;
+      padding: 10px;
+
+      &--item {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    &-roles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; 
+    }
+  }
+
+  &__roles {
+    background: #ededed;
+    border-radius: 5px;
+    border: 1px solid #ededed;
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    height: fit-content;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    min-width: 45%;
+    padding: 10px;
+  }
+
+  &__loading {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    padding: 0;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    &__header {
+      &-data {
+        &--text {
+          font-size: 25px;
+          margin-top: 10px;
+        }
+      }
+  
+      &-social {
+        min-width: 30%;
+  
+        &--item {
+          font-size: 10px;
+        }
+      }
+    } 
+  }
+}
